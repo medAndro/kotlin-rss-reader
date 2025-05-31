@@ -2,6 +2,7 @@ package rssReader
 
 import org.w3c.dom.Element
 import rssReader.data.PostRepository
+import rssReader.domain.TechBlog
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -9,15 +10,15 @@ fun main() {
     while (true) {
         println("검색어를 입력하세요 (없으면 전체 출력):")
         val keyword: String? = readlnOrNull()
-        showLatestPosts("https://tech.kakao.com/feed/")
+        showLatestPosts()
     }
 }
 
 private fun showLatestPosts(
-    url: String,
+    techBlogs: List<TechBlog>,
     keyword: String? = null,
 ) {
-    val items: List<Element> = PostRepository.fetchLatestPosts(url)
+    val items: List<Element> = PostRepository.fetchLatestPosts(techBlogs)
 
     items.forEachIndexed { index: Int, element: Element ->
         val title: String = element.textOf("title")

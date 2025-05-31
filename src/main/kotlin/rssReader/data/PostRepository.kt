@@ -3,13 +3,21 @@ package rssReader.data
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
+import rssReader.domain.TechBlog
 import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
 
-object PostRepository {
-    fun fetchLatestPosts(url: String): List<Element> {
+class PostRepository(
+    val techBlogDataSource: TechBlogDataSource = LocalTechBlogDataSource,
+) {
+    fun fetchLatestPosts(techBlogs: List<TechBlog>): List<Element> {
         val builder: DocumentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-        val document: Document = builder.parse(url)
+
+        return techBlogs.flatMap { techBlog: TechBlog -> builder.getElements(techBlog.url) }
+    }
+
+    private fun DocumentBuilder.getElements(url: String): List<Element> {
+        val document: Document = parse(url)
         val channel: Node = document.getElementsByTagName("channel").item(0)
 
         val items: List<Element> =
