@@ -1,0 +1,22 @@
+package rssReader.data
+
+import org.w3c.dom.Document
+import org.w3c.dom.Element
+import org.w3c.dom.Node
+import javax.xml.parsers.DocumentBuilder
+import javax.xml.parsers.DocumentBuilderFactory
+
+object PostRepository {
+    fun fetchLatestPosts(url: String): List<Element> {
+        val builder: DocumentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+        val document: Document = builder.parse(url)
+        val channel: Node = document.getElementsByTagName("channel").item(0)
+
+        val items: List<Element> =
+            List(channel.childNodes.length) { channel.childNodes.item(it) }
+                .filterIsInstance<Element>()
+                .filter { it.tagName == "item" }
+
+        return items
+    }
+}
