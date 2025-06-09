@@ -10,7 +10,6 @@ object LocalTechBlogDataSource : TechBlogDataSource {
             TechBlog("서준수님의 블로그", "https://brunch.co.kr/rss/@@2Kn8"),
             TechBlog("우아한형제들", "https://techblog.woowahan.com/feed/"),
             TechBlog("라인", "https://engineering.linecorp.com/ko/feed/index.html"),
-            TechBlog("토스", "https://toss.tech/rss.xml"),
             TechBlog("컬리", "https://helloworld.kurly.com/feed.xml"),
             TechBlog("뱅크샐러드", "https://blog.banksalad.com/rss.xml"),
             TechBlog("넷마블", "https://netmarble.engineering/feed/"),
