@@ -1,9 +1,9 @@
 package rss.view
 
-import org.w3c.dom.Element
+import rss.domain.Post
 
 interface RssView {
     fun readKeyword(): String?
 
-    fun showPost(posts: List<Element>)
+    fun showPost(posts: List<Post>)
 }

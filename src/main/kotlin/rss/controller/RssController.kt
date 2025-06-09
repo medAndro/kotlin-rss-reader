@@ -8,10 +8,10 @@ class RssController(
     private val rssView: RssView,
     private val rssReader: RssReader,
 ) {
-    fun startRssReader() {
+    fun startRssReader(postLimit: Int) {
         val keyWord = rssView.readKeyword()
         val blogs = LocalTechBlogDataSource.value
-        val posts = rssReader.keyWordFilteredLatestPosts(blogs, keyWord)
+        val posts = rssReader.keyWordFilteredLatestPosts(blogs, keyWord, postLimit)
         rssView.showPost(posts)
     }
 }

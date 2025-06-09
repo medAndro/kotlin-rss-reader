@@ -7,6 +7,6 @@ import rss.view.ConsoleView
 
 fun main() {
     val controller = RssController(ConsoleView(), RssReader(PostRepository()))
-
-    controller.startRssReader()
+    val postLimit = 10
+    controller.startRssReader(postLimit)
 }

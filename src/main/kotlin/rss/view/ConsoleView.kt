@@ -1,9 +1,6 @@
 package rss.view
 
-import org.w3c.dom.Element
-import rss.util.textOf
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import rss.domain.Post
 
 class ConsoleView : RssView {
     override fun readKeyword(): String? {
@@ -12,14 +9,10 @@ class ConsoleView : RssView {
         return keyword
     }
 
-    override fun showPost(posts: List<Element>) {
-        posts.forEachIndexed { index: Int, element: Element ->
-            val title: String = element.textOf("title")
-            val link: String = element.textOf("link")
-            val publishedDate: LocalDateTime =
-                LocalDateTime.parse(element.textOf("pubDate"), DateTimeFormatter.RFC_1123_DATE_TIME)
+    override fun showPost(posts: List<Post>) {
+        posts.forEachIndexed { index: Int, post: Post ->
 
-            println("[${index + 1}] $title (${publishedDate.toLocalDate()}) - $link")
+            println("[${index + 1}] ${post.postTitle} (${post.publicationDate.toLocalDate()}) - ${post.url}")
         }
     }
 }
