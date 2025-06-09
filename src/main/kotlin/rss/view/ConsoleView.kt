@@ -13,5 +13,6 @@ class ConsoleView : RssView {
         posts.forEachIndexed { index: Int, post: Post ->
             println("[${index + 1}] ${post.postTitle} (${post.publicationDate.toLocalDate()}) - ${post.blogName}(${post.url})")
         }
+        println()
     }
 }

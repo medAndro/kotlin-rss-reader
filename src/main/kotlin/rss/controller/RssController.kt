@@ -9,6 +9,12 @@ class RssController(
     private val rssReader: RssReader,
 ) {
     fun startRssReader(postLimit: Int) {
+        while (true) {
+            readRss(postLimit)
+        }
+    }
+
+    private fun readRss(postLimit: Int) {
         val keyWord = rssView.readKeyword()
         val blogs = LocalTechBlogDataSource.value
         val posts = rssReader.keyWordFilteredLatestPosts(blogs, keyWord, postLimit)
