@@ -6,8 +6,9 @@ object LocalTechBlogDataSource : TechBlogDataSource {
     override val value =
         listOf(
             TechBlog("카카오", "https://tech.kakao.com/feed/"),
+            TechBlog("정석준님의 블로그", "https://dino-dev.tistory.com/rss"),
+            TechBlog("서준수님의 블로그", "https://brunch.co.kr/rss/@@2Kn8"),
             TechBlog("우아한형제들", "https://techblog.woowahan.com/feed/"),
-            TechBlog("네이버D2", "https://d2.naver.com/d2.atom"),
             TechBlog("라인", "https://engineering.linecorp.com/ko/feed/index.html"),
             TechBlog("토스", "https://toss.tech/rss.xml"),
             TechBlog("컬리", "https://helloworld.kurly.com/feed.xml"),

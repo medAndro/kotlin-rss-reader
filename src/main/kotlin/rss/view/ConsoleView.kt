@@ -11,8 +11,7 @@ class ConsoleView : RssView {
 
     override fun showPost(posts: List<Post>) {
         posts.forEachIndexed { index: Int, post: Post ->
-
-            println("[${index + 1}] ${post.postTitle} (${post.publicationDate.toLocalDate()}) - ${post.url}")
+            println("[${index + 1}] ${post.postTitle} (${post.publicationDate.toLocalDate()}) - ${post.blogName}(${post.url})")
         }
     }
 }
