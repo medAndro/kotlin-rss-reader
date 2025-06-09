@@ -1,15 +1,13 @@
-package rssReader.data
+package rss.data
 
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
-import rssReader.domain.TechBlog
+import rss.domain.TechBlog
 import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
 
-class PostRepository(
-    val techBlogDataSource: TechBlogDataSource = LocalTechBlogDataSource,
-) {
+class PostRepository {
     fun fetchLatestPosts(techBlogs: List<TechBlog>): List<Element> {
         val builder: DocumentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder()
 

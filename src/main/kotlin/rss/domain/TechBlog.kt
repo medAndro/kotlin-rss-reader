@@ -1,4 +1,4 @@
-package rssReader.domain
+package rss.domain
 
 data class TechBlog(
     val title: String,

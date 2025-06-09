@@ -1,6 +1,6 @@
-package rssReader.data
+package rss.data
 
-import rssReader.domain.TechBlog
+import rss.domain.TechBlog
 
 object LocalTechBlogDataSource : TechBlogDataSource {
     override val value =
