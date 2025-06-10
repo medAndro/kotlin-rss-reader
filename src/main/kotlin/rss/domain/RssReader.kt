@@ -1,23 +1,22 @@
 package rss.domain
 
-import kotlinx.coroutines.runBlocking
 import rss.data.PostRepository
 
 class RssReader(
+    private val techBlogs: List<TechBlog>,
     private val postRepository: PostRepository,
     private val useCoroutine: Boolean = true,
 ) {
-    fun keyWordFilteredLatestPosts(
-        techBlogs: List<TechBlog>,
+    suspend fun keyWordFilteredLatestPosts(
         keyWord: String?,
-        limit: Int,
+        limit: Int = Int.MAX_VALUE,
     ): List<Post> =
         when {
             keyWord == null -> getAllLatestPosts(techBlogs).sortAndLimitedPost(limit)
             else -> getFilteredAllLatestPosts(techBlogs, keyWord).sortAndLimitedPost(limit)
         }
 
-    private fun getFilteredAllLatestPosts(
+    private suspend fun getFilteredAllLatestPosts(
         techBlogs: List<TechBlog>,
         keyWord: String,
     ): List<Post> {
@@ -32,12 +31,9 @@ class RssReader(
         return filteredPost
     }
 
-    private fun getAllLatestPosts(techBlogs: List<TechBlog>): List<Post> =
+    private suspend fun getAllLatestPosts(techBlogs: List<TechBlog>): List<Post> =
         when (useCoroutine) {
-            true ->
-                runBlocking {
-                    postRepository.fetchLatestPosts(techBlogs)
-                }
+            true -> postRepository.fetchLatestPosts(techBlogs)
 
             false -> postRepository.fetchLatestPostsSequential(techBlogs)
         }
